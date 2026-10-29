@@ -1,0 +1,34 @@
+{
+  "name": "memos-cloudflare",
+  "version": "0.2.0",
+  "description": "Memos migrated to Cloudflare Workers + D1 + R2",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "dev:drizzle": "wrangler dev src/index-drizzle.ts",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "db:init": "wrangler d1 execute memos --file=./schema.sql",
+    "db:seed": "wrangler d1 execute memos --file=./seed.sql",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "test": "vitest",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "@types/node": "^20.14.0",
+    "@types/uuid": "^9.0.8",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "wrangler": "^3.60.0"
+  },
+  "dependencies": {
+    "drizzle-kit": "^0.31.5",
+    "drizzle-orm": "^0.44.6",
+    "hono": "^4.4.0",
+    "uuid": "^9.0.1"
+  }
+}
